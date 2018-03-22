@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        font-family: "HelveticaNeue", Helvetica, sans-seric;
+        font-size: 14pt;
+      }
+    </style>
+  </head>
+  <body>
+    This is
+    <h3>Page <span id="number">1</span></h3>
+    <a href="#" id="next-link" target="_blank">Next Page</a>
+
+    <script type="text/javascript">
+      var currentId = 1;
+      var currentPage = queryParam('page');
+      if (currentPage) {
+        currentPage = +currentPage;
+      } else {
+        currentPage = 1;
+      }
+
+      document.getElementById('number').innerText = currentPage;
+      document.getElementById('next-link').href = '?page=' + (currentPage + 1);
+
+      function queryParam(key) {
+        var match = document.location.search.match(new RegExp("&?" + key + "=([^&]+)"));
+        if (match) {
+          return match[1];
+        }
+      }
+    </script>
+  </body>
+</html>
